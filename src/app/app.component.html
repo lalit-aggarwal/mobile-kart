@@ -1,0 +1,22 @@
+<div *ngIf='!showLogin' class="panel panel-primary" style="text-align:center">
+  <div class="panel-heading">
+    <div style="float:right">
+      <button *ngIf='!user.isLoggedIn' type="button" class="btn btn-danger" (click)="onClickLoginButton()">Login</button>
+      <div class="btn-group" *ngIf='user.isLoggedIn'>
+        <div class="dropdown">
+          <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            Welcome {{user.username}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" (click)='onLoggedOut()' style="float:left; padding:0 0 0 1rem">Logout</a>
+          </div>
+        </div>
+      </div>
+      <img src="http://www.bankcheckingsavings.com/wp-content/uploads/2016/01/shopping-cart-trick.png" height="75px" width="75px">
+    </div>
+    <h2>Welcome to {{title}}!</h2>
+  </div>
+</div>
+<app-home *ngIf='!showLogin' [loggedUser]='user'></app-home>
+<app-login *ngIf='showLogin' (loginSuccessEvent)='onSuccessLogin($event)'></app-login>

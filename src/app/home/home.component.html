@@ -1,0 +1,33 @@
+<div class="container-fluid" *ngIf='isHomePageShown'>
+  <div class="input-group">
+    <h1 style="text-align:left">{{header}}</h1>
+    <input type="text" class="form-control" [(ngModel)]='listFilterBy' placeholder="Search" style="float:right">
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">SNo.</th>
+        <th scope="col">Image</th>
+        <th scope="col">Device Name</th>
+        <th scope="col">Price</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let mobile of filteredList'>
+        <td>{{mobile.id}}</td>
+        <td>
+          <img class="card-img-top" src="{{mobile.imageurl}}" height="150px" width="125px" alt="Card image cap">
+        </td>
+        <td>{{mobile.devicename}}</td>
+        <td>{{mobile.price | currency }}</td>
+        <td>
+          <a href="#" class="btn btn-primary" (click)="viewMobileInformation(mobile)">View</a>
+          <a href="#" class="btn btn-primary" (click)="addMobileToCart(mobile)">Add to Cart</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<app-viewmobileinformation *ngIf='showMobileInformation' [mobile]='selectedMobile' [user]='loggedUser' (homePageEvent)="showHomePage($event)"></app-viewmobileinformation>
+<app-cartdetails *ngIf='showCartDetails' [mobile]='selectedMobile' [user]='loggedUser' (homePageEvent)="showHomePage($event)"></app-cartdetails>

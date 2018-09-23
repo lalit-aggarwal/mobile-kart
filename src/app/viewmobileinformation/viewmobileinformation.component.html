@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <table class="table" align="center" *ngIf="showMobileInformation">
+    <thead>
+      <tr>
+        <th scope="col" item-width="50px">Image</th>
+        <th scope="col">Device Information</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <img class="card-img-top" src="{{mobile.imageurl}}" height="350px" width="250px" alt="Card image cap">
+        </td>
+        <td>
+          <h3><b>{{mobile.devicename}}</b></h3>
+          <h4><b>Price: {{mobile.price | currency:USD}}</b></h4>
+          <h4><b>Model Number: </b>{{mobile.modelnumber}}</h4>
+          <h4><b>Colors: </b>{{mobile.colors}}</h4>
+          <h4><b>Screen Size: </b>{{mobile.screensize}}</h4>
+          <h4><b>Operating System: </b>{{mobile.operatingsystem}}</h4>
+          <h4><b>RAM: </b>{{mobile.ram | storageunit}}</h4>
+          <h4><b>Storage: </b>{{mobile.storage | storageunit}}</h4>
+          <h4><b>Camera: </b>{{mobile.camera}}</h4>
+        </td>
+        <td>
+          <button class="btn btn-primary" (click)="showCart()">Add to Cart</button>
+          <button class="btn btn-primary" (click)="goToHomePage()">Back</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-cartdetails *ngIf='showCartDetails' [mobile]='mobile' [user]='user' (viewMobilePageEvent)="showMobileInfo($event)"></app-cartdetails>
+</div>

@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="input-group">
+    <h1 style="text-align:left">Cart Details</h1>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" item-width="50px">Device</th>
+        <th scope="col">Model Number</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let m of addedMobiles'>
+        <td>
+          <img class="card-img-top" src="{{m.imageurl}}" height="150px" width="125px" alt="Card image cap">
+        </td>
+        <td>
+          {{m.modelnumber}}
+        </td>
+        <td>
+          <input type="text" class="form-control" [(ngModel)]="m.quantity" style="width:60px">
+        </td>
+        <td>
+          {{m.price | currency}}
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger" style="float:left" (click)="removeMobileFromCart(m)">Remove</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table" style="width:20%; float:right;">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <h1>
+            <b>Total: </b>{{total | currency}}</h1>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button type="button" class="btn btn-primary" (click)="removeMobileFromCart()">Calculate Total Price</button>
+          <button type="button" class="btn btn-primary" (click)="placeOrder()">Place Order</button>
+          <button type="button" class="btn btn-primary" (click)="goToHomePage()">Back</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
